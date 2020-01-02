@@ -9,6 +9,11 @@ def team_colors(team)
   end 
 end
 
+def team_names(hash) 
+    game_hash.each do |place, team|
+      puts team[:team_name]
+    end 
+end
 
 
 def game_hash   
