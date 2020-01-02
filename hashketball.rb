@@ -1,4 +1,22 @@
 require "pry"
+def wining_team 
+  
+
+def most_points_scored
+  highest_player = {}
+  highest_score = 0 
+  
+  game_hash.each do |place, team|
+      team[:players].each do |player|
+        # binding.pry    
+        if player[:points] > highest_score
+          highest_score = player[:points]
+          highest_player = player
+        end 
+      end 
+  end 
+  return highest_player[:player_name]
+end 
 
 def big_shoe_rebounds 
   largest_shoe_player = {}
