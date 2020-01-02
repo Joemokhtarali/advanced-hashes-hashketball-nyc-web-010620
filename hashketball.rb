@@ -1,5 +1,18 @@
-def game_hash 
-  game = {   
+require "pry"
+def team_colors(team) 
+    game_hash.each do |place, the_team|
+      the_team.each do |key, value|
+        if value == team
+          return the_team[:colors]
+        end 
+    end 
+  end 
+end
+
+
+
+def game_hash   
+  teams = {   
     :home => {
       :team_name => "Brooklyn Nets",
       :colors => ["Black", "White"],
@@ -57,7 +70,7 @@ def game_hash
         ]
     },
     
-    :away => {
+    :away => { 
       :team_name => "Charlotte Hornets",
       :colors => ["Turquoise", "Purple"],
       :players => [ 
@@ -114,5 +127,25 @@ def game_hash
         ]
     },
   }
-  return game 
+  return teams 
 end 
+
+def num_points_scored(player_name) 
+    game_hash.each do |place, team|
+      team[:players].each do |player|
+        if player_name == player[:player_name]
+          return player[:points]
+      end 
+    end 
+  end 
+end 
+
+def shoe_size(player_name) 
+    game_hash.each do |place, team|
+      team[:players].each do |player|
+        if player_name == player[:player_name]
+          return player[:shoe]
+      end 
+    end 
+  end 
+end
