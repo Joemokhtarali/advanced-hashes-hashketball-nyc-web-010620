@@ -1,4 +1,43 @@
 require "pry"
+
+def big_shoe_rebounds 
+  largest_shoe_player = {}
+  largest_shoe = 0 
+  #highest_rebounds = 0 
+  game_hash.each do |place, team|
+      team[:players].each do |player|
+        # binding.pry
+        if player[:shoe] > largest_shoe
+          largest_shoe = player[:shoe]
+          largest_shoe_player = player
+          
+          #highest_rebounds = player[rebounds]
+        end 
+      end 
+   end 
+   return largest_shoe_player[:rebounds]
+end 
+
+def num_points_scored(player_name) 
+    game_hash.each do |place, team|
+      team[:players].each do |player|
+        if player_name == player[:player_name]
+          return player[:points]
+      end 
+    end 
+  end 
+end 
+
+def shoe_size(player_name) 
+    game_hash.each do |place, team|
+      team[:players].each do |player|
+        if player_name == player[:player_name]
+          return player[:shoe]
+      end 
+    end 
+  end 
+end
+
 def team_colors(team) 
     game_hash.each do |place, the_team|
       the_team.each do |key, value|
@@ -9,11 +48,44 @@ def team_colors(team)
   end 
 end
 
-def team_names(hash) 
+def team_names 
+  teams = []
     game_hash.each do |place, team|
-      puts team[:team_name]
+      teams << team[:team_name]
     end 
+    
+    return teams 
 end
+
+
+def player_numbers(team_name)
+  numbers = []
+  game_hash.each do |place, team|
+    if team[:team_name] == team_name
+      team[:players].each do |player|
+        numbers << player[:number]
+      end 
+    end 
+  end 
+  
+  team_numbers = numbers.sort()
+  return team_numbers
+end 
+
+def player_stats(player_name)
+  player_hash = {}
+    game_hash.each do |place, team|
+      team[:players].each do |player|
+        # binding.pry
+        if player[:player_name] == player_name
+          player_hash = player.delete_if do |k,v|     
+            k == :player_name
+        end 
+      end 
+    end 
+  end 
+        return player_hash
+end   
 
 
 def game_hash   
@@ -135,22 +207,3 @@ def game_hash
   return teams 
 end 
 
-def num_points_scored(player_name) 
-    game_hash.each do |place, team|
-      team[:players].each do |player|
-        if player_name == player[:player_name]
-          return player[:points]
-      end 
-    end 
-  end 
-end 
-
-def shoe_size(player_name) 
-    game_hash.each do |place, team|
-      team[:players].each do |player|
-        if player_name == player[:player_name]
-          return player[:shoe]
-      end 
-    end 
-  end 
-end
