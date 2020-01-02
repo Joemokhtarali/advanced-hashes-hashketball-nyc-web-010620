@@ -1,6 +1,9 @@
 require "pry"
 def wining_team 
   
+  
+end 
+  
 
 def most_points_scored
   highest_player = {}
