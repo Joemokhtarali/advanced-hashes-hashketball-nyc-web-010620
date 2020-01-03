@@ -1,7 +1,54 @@
 require "pry"
-def wining_team 
+
+def long_name_steals_a_ton?
+  longest_name = player_with_longest_name
+  
+  highest_player = {}
+  highest_steals = 0 
+  
+  game_hash.each do |place, team|
+      team[:players].each do |player|
+        if player[:steals] > highest_steals
+          highest_steals = player[:steals]
+          highest_player = player
+        end 
+      end 
+  end 
+  return highest_player[:player_name] == longest_name
   
   
+end 
+
+def player_with_longest_name
+  highest_player = {}
+  longest_name = "" 
+  
+  game_hash.each do |place, team|
+      team[:players].each do |player|
+        if player[:player_name].length > longest_name.length
+          longest_name = player[:player_name]
+          highest_player = player
+        end 
+      end 
+  end 
+  return highest_player[:player_name]
+end 
+
+
+def winning_team
+  winner = {}
+  game_hash.each do |place, value|
+    total = 0 
+     value[:players].each do |player|
+      # binding.pry
+      total += player[:points]
+    end 
+    if total > winner[:total]
+      winner = value
+  end
+end 
+  return winner[:team_name]
+    
 end 
   
 
@@ -109,7 +156,8 @@ def player_stats(player_name)
 end   
 
 
-def game_hash   
+def game_hash   #winner = {},  comparing home to away , accumlating points of players in a
+ # total var 
   teams = {   
     :home => {
       :team_name => "Brooklyn Nets",
